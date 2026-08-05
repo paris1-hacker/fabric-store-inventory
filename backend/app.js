@@ -1,5 +1,8 @@
+
 const express = require("express");
 const cors = require("cors");
+
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const app = express();
 
@@ -12,5 +15,7 @@ app.get("/", (req, res) => {
         message: "Fabric Store Inventory API is running"
     });
 });
+
+app.use("/api/categories", categoryRoutes);
 
 module.exports = app;
