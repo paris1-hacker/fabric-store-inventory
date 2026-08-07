@@ -1,13 +1,17 @@
 const pool = require("../config/db");
 
-const getAllInventory = async () => {
-    const [rows] = await pool.query(`
+
+const getAllInventory = async (filters = {}) => {
+    let sql = `
         SELECT
             i.id,
             i.product_id,
             p.name AS product_name,
             p.price_per_yard,
             c.name AS category_name,
+            s.name AS supplier_name,
+            p.color,
+            p.material,
             i.quantity,
             i.updated_at
         FROM inventory i
@@ -15,11 +19,61 @@ const getAllInventory = async () => {
             ON i.product_id = p.id
         INNER JOIN categories c
             ON p.category_id = c.id
-        ORDER BY p.name ASC
-    `);
+        INNER JOIN suppliers s
+            ON p.supplier_id = s.id
+        WHERE 1 = 1
+    `;
+
+    const values = [];
+
+    if (filters.search) {
+        sql += `
+            AND (
+                p.name LIKE ?
+                OR p.material LIKE ?
+                OR p.color LIKE ?
+            )
+        `;
+
+        const searchValue = `%${filters.search}%`;
+
+        values.push(
+            searchValue,
+            searchValue,
+            searchValue
+        );
+    }
+
+    if (filters.category_id) {
+        sql += ` AND p.category_id = ?`;
+        values.push(filters.category_id);
+    }
+
+    if (filters.supplier_id) {
+        sql += ` AND p.supplier_id = ?`;
+        values.push(filters.supplier_id);
+    }
+
+    if (filters.status === "low") {
+        sql += ` AND i.quantity <= 10`;
+    }
+
+    if (filters.status === "out") {
+        sql += ` AND i.quantity = 0`;
+    }
+
+    if (filters.status === "available") {
+        sql += ` AND i.quantity > 10`;
+    }
+
+    sql += ` ORDER BY p.name ASC`;
+
+    const [rows] = await pool.query(sql, values);
 
     return rows;
 };
+
+
 
 const getInventoryByProductId = async (productId) => {
     const [rows] = await pool.query(`

@@ -2,10 +2,31 @@ const productModel = require("../models/productModel");
 
 const getProducts = async (req, res, next) => {
     try {
-        const products = await productModel.getAllProducts();
+        const {
+            search,
+            category_id,
+            supplier_id,
+            color,
+            min_price,
+            max_price,
+            low_stock,
+            out_of_stock
+        } = req.query;
+
+        const products = await productModel.getAllProducts({
+            search,
+            category_id,
+            supplier_id,
+            color,
+            min_price,
+            max_price,
+            low_stock,
+            out_of_stock
+        });
 
         res.status(200).json({
             success: true,
+            count: products.length,
             data: products
         });
     } catch (error) {

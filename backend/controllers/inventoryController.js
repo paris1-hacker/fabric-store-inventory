@@ -3,16 +3,32 @@ const inventoryModel = require("../models/inventoryModel");
 
 const getInventory = async (req, res, next) => {
     try {
-        const inventory = await inventoryModel.getAllInventory();
+        const {
+            search,
+            category_id,
+            supplier_id,
+            status
+        } = req.query;
+
+        const inventory = await inventoryModel.getAllInventory({
+            search,
+            category_id,
+            supplier_id,
+            status
+        });
 
         res.status(200).json({
             success: true,
+            count: inventory.length,
             data: inventory
         });
     } catch (error) {
         next(error);
     }
 };
+
+
+
 
 const getProductInventory = async (req, res, next) => {
     try {
