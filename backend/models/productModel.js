@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 
+
 const getAllProducts = async (filters = {}) => {
     let sql = `
         SELECT
@@ -50,51 +51,93 @@ const getAllProducts = async (filters = {}) => {
         );
     }
 
-    // Category filter
+    // Category
     if (filters.category_id) {
         sql += ` AND p.category_id = ?`;
         values.push(filters.category_id);
     }
 
-    // Supplier filter
+    // Supplier
     if (filters.supplier_id) {
         sql += ` AND p.supplier_id = ?`;
         values.push(filters.supplier_id);
     }
 
-    // Color filter
+    // Color
     if (filters.color) {
         sql += ` AND p.color LIKE ?`;
         values.push(`%${filters.color}%`);
     }
 
-    // Minimum price
+    // Price range
     if (filters.min_price) {
         sql += ` AND p.price_per_yard >= ?`;
         values.push(filters.min_price);
     }
 
-    // Maximum price
     if (filters.max_price) {
         sql += ` AND p.price_per_yard <= ?`;
         values.push(filters.max_price);
     }
 
-    // Low stock filter
+    // Low stock
     if (filters.low_stock === "true") {
         sql += ` AND COALESCE(i.quantity, 0) <= 10`;
     }
 
-    // Out of stock filter
+    // Out of stock
     if (filters.out_of_stock === "true") {
         sql += ` AND COALESCE(i.quantity, 0) = 0`;
     }
 
-    sql += ` ORDER BY p.created_at DESC`;
+    // Count total filtered products
+    const countSql = `
+        SELECT COUNT(*) AS total
+        FROM (${sql}) AS filtered_products
+    `;
 
-    const [rows] = await pool.query(sql, values);
+    const [countRows] = await pool.query(
+        countSql,
+        values
+    );
 
-    return rows;
+    const total = countRows[0].total;
+
+    // Pagination
+    const page = Math.max(
+        parseInt(filters.page) || 1,
+        1
+    );
+
+    const limit = Math.min(
+        Math.max(
+            parseInt(filters.limit) || 10,
+            1
+        ),
+        100
+    );
+
+    const offset = (page - 1) * limit;
+
+    sql += `
+        ORDER BY p.created_at DESC
+        LIMIT ? OFFSET ?
+    `;
+
+    const [rows] = await pool.query(
+        sql,
+        [...values, limit, offset]
+    );
+
+    return {
+        products: rows,
+        pagination: {
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit)
+        }
+    };
 };
 
 const getProductById = async (id) => {

@@ -7,27 +7,31 @@ const getInventory = async (req, res, next) => {
             search,
             category_id,
             supplier_id,
-            status
+            status,
+            page,
+            limit
         } = req.query;
 
-        const inventory = await inventoryModel.getAllInventory({
-            search,
-            category_id,
-            supplier_id,
-            status
-        });
+        const result =
+            await inventoryModel.getAllInventory({
+                search,
+                category_id,
+                supplier_id,
+                status,
+                page,
+                limit
+            });
 
         res.status(200).json({
             success: true,
-            count: inventory.length,
-            data: inventory
+            data: result.inventory,
+            pagination: result.pagination
         });
+
     } catch (error) {
         next(error);
     }
 };
-
-
 
 
 const getProductInventory = async (req, res, next) => {

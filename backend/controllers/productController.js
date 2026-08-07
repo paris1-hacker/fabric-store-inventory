@@ -10,25 +10,31 @@ const getProducts = async (req, res, next) => {
             min_price,
             max_price,
             low_stock,
-            out_of_stock
+            out_of_stock,
+            page,
+            limit
         } = req.query;
 
-        const products = await productModel.getAllProducts({
-            search,
-            category_id,
-            supplier_id,
-            color,
-            min_price,
-            max_price,
-            low_stock,
-            out_of_stock
-        });
+        const result =
+            await productModel.getAllProducts({
+                search,
+                category_id,
+                supplier_id,
+                color,
+                min_price,
+                max_price,
+                low_stock,
+                out_of_stock,
+                page,
+                limit
+            });
 
         res.status(200).json({
             success: true,
-            count: products.length,
-            data: products
+            data: result.products,
+            pagination: result.pagination
         });
+
     } catch (error) {
         next(error);
     }

@@ -1,6 +1,5 @@
 const pool = require("../config/db");
 
-
 const getAllInventory = async (filters = {}) => {
     let sql = `
         SELECT
@@ -26,6 +25,7 @@ const getAllInventory = async (filters = {}) => {
 
     const values = [];
 
+    // Search
     if (filters.search) {
         sql += `
             AND (
@@ -44,18 +44,21 @@ const getAllInventory = async (filters = {}) => {
         );
     }
 
+    // Category
     if (filters.category_id) {
         sql += ` AND p.category_id = ?`;
         values.push(filters.category_id);
     }
 
+    // Supplier
     if (filters.supplier_id) {
         sql += ` AND p.supplier_id = ?`;
         values.push(filters.supplier_id);
     }
 
+    // Stock status
     if (filters.status === "low") {
-        sql += ` AND i.quantity <= 10`;
+        sql += ` AND i.quantity > 0 AND i.quantity <= 10`;
     }
 
     if (filters.status === "out") {
@@ -66,11 +69,54 @@ const getAllInventory = async (filters = {}) => {
         sql += ` AND i.quantity > 10`;
     }
 
-    sql += ` ORDER BY p.name ASC`;
+    // Count filtered records BEFORE pagination
+    const countSql = `
+        SELECT COUNT(*) AS total
+        FROM (${sql}) AS filtered_inventory
+    `;
 
-    const [rows] = await pool.query(sql, values);
+    const [countRows] = await pool.query(
+        countSql,
+        values
+    );
 
-    return rows;
+    const total = countRows[0].total;
+
+    // Pagination
+    const page = Math.max(
+        parseInt(filters.page) || 1,
+        1
+    );
+
+    const limit = Math.min(
+        Math.max(
+            parseInt(filters.limit) || 10,
+            1
+        ),
+        100
+    );
+
+    const offset = (page - 1) * limit;
+
+    sql += `
+        ORDER BY p.name ASC
+        LIMIT ? OFFSET ?
+    `;
+
+    const [rows] = await pool.query(
+        sql,
+        [...values, limit, offset]
+    );
+
+    return {
+        inventory: rows,
+        pagination: {
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit)
+        }
+    };
 };
 
 
@@ -186,3 +232,4 @@ module.exports = {
     createMovement,
     getMovements
 };
+

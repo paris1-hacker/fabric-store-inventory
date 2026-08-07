@@ -10,6 +10,7 @@ const {
 
 const authMiddleware = require("../middleware/authMiddleware");
 const authorizeRoles = require("../middleware/roleMiddleware");
+const validateStock = require("../middleware/validateStock");
 
 const router = express.Router();
 
