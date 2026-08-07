@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fabric Store | Dashboard</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="bi bi-shop"></i>
+            </div>
+
+            <div>
+                <h5>Fabric Store</h5>
+                <small>Inventory System</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-label">MAIN</p>
+
+            <a href="dashboard.html" class="nav-link active">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="products.html" class="nav-link">
+                <i class="bi bi-box-seam"></i>
+                <span>Products</span>
+            </a>
+
+            <a href="inventory.html" class="nav-link">
+                <i class="bi bi-boxes"></i>
+                <span>Inventory</span>
+            </a>
+
+            <a href="#" class="nav-link">
+                <i class="bi bi-arrow-left-right"></i>
+                <span>Stock Movements</span>
+            </a>
+
+            <p class="nav-label mt-4">MANAGEMENT</p>
+
+            <a href="#" class="nav-link">
+                <i class="bi bi-people"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="#" class="nav-link">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Area -->
+    <div class="main-area">
+
+        <!-- Top Navbar -->
+        <header class="topbar">
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+            >
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="topbar-right">
+
+                <button class="icon-btn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="user-profile">
+
+                    <div class="avatar" id="userAvatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+                        <strong id="userName">
+                            Admin
+                        </strong>
+
+                        <small id="userRole">
+                            Administrator
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page Content -->
+        <main class="content">
+
+            <!-- Page Heading -->
+            <div class="page-heading">
+
+                <div>
+                    <p class="text-muted mb-1">
+                        Overview
+                    </p>
+
+                    <h2>
+                        Dashboard
+                    </h2>
+
+                    <p class="text-muted">
+                        Here's what's happening in your fabric store today.
+                    </p>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-plus-lg me-2"></i>
+                        Add Product
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- Statistics -->
+            <div class="row g-4 mb-4">
+
+                <!-- Products -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon products-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span>
+                                Total Products
+                            </span>
+
+                            <h3 id="totalProducts">
+                                --
+                            </h3>
+
+                            <small>
+                                Products in catalog
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Stock -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon stock-icon">
+                            <i class="bi bi-stack"></i>
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span>
+                                Total Stock
+                            </span>
+
+                            <h3 id="totalStock">
+                                --
+                            </h3>
+
+                            <small>
+                                Yards available
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Low Stock -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon warning-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span>
+                                Low Stock
+                            </span>
+
+                            <h3 id="lowStock">
+                                --
+                            </h3>
+
+                            <small>
+                                Need attention
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Out of Stock -->
+                <div class="col-xl-3 col-md-6">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon danger-icon">
+                            <i class="bi bi-x-circle"></i>
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span>
+                                Out of Stock
+                            </span>
+
+                            <h3 id="outOfStock">
+                                --
+                            </h3>
+
+                            <small>
+                                Currently unavailable
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Lower Dashboard -->
+            <div class="row g-4">
+
+                <!-- Recent Movements -->
+                <div class="col-xl-8">
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header-custom">
+
+                            <div>
+                                <h5>
+                                    Recent Stock Movements
+                                </h5>
+
+                                <p>
+                                    Latest inventory activity
+                                </p>
+                            </div>
+
+                            <a href="inventory.html">
+                                View all
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <table class="table dashboard-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Type</th>
+                                        <th>Quantity</th>
+                                        <th>User</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="recentMovements">
+
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">
+                                            Loading...
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Low Stock -->
+                <div class="col-xl-4">
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header-custom">
+
+                            <div>
+                                <h5>
+                                    Low Stock Alert
+                                </h5>
+
+                                <p>
+                                    Products that need attention
+                                </p>
+                            </div>
+
+                            <span class="alert-count" id="lowStockCount">
+                                0
+                            </span>
+
+                        </div>
+
+                        <div id="lowStockList">
+
+                            <div class="empty-state">
+                                Loading...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html> 
