@@ -33,10 +33,27 @@ router.get(
 );
 
 // Only ADMIN and STAFF can modify stock
+// router.post(
+//     "/stock-in",
+//     authMiddleware,
+//     authorizeRoles("ADMIN", "STAFF"),
+//     stockIn
+// );
+
+// router.post(
+//     "/stock-out",
+//     authMiddleware,
+//     authorizeRoles("ADMIN", "STAFF"),
+//     stockOut
+// );
+
+
+
 router.post(
     "/stock-in",
     authMiddleware,
     authorizeRoles("ADMIN", "STAFF"),
+    validateStock,
     stockIn
 );
 
@@ -44,7 +61,7 @@ router.post(
     "/stock-out",
     authMiddleware,
     authorizeRoles("ADMIN", "STAFF"),
+    validateStock,
     stockOut
 );
-
 module.exports = router;
