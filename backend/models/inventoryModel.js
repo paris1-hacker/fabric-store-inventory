@@ -157,6 +157,8 @@ const getMovements = async () => {
             sm.id,
             sm.product_id,
             p.name AS product_name,
+            sm.user_id,
+            u.name AS user_name,
             sm.movement_type,
             sm.quantity,
             sm.previous_quantity,
@@ -166,11 +168,15 @@ const getMovements = async () => {
         FROM stock_movements sm
         INNER JOIN products p
             ON sm.product_id = p.id
+        INNER JOIN users u
+            ON sm.user_id = u.id
         ORDER BY sm.created_at DESC
     `);
 
     return rows;
 };
+
+
 
 module.exports = {
     getAllInventory,

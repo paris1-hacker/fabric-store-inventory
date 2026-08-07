@@ -8,16 +8,43 @@ const {
     getMovements
 } = require("../controllers/inventoryController");
 
+const authMiddleware = require("../middleware/authMiddleware");
+const authorizeRoles = require("../middleware/roleMiddleware");
+
 const router = express.Router();
 
-router.get("/", getInventory);
+// Anyone authenticated can view inventory
+router.get(
+    "/",
+    authMiddleware,
+    getInventory
+);
 
-router.get("/movements", getMovements);
+router.get(
+    "/movements",
+    authMiddleware,
+    getMovements
+);
 
-router.get("/product/:productId", getProductInventory);
+router.get(
+    "/product/:productId",
+    authMiddleware,
+    getProductInventory
+);
 
-router.post("/stock-in", stockIn);
+// Only ADMIN and STAFF can modify stock
+router.post(
+    "/stock-in",
+    authMiddleware,
+    authorizeRoles("ADMIN", "STAFF"),
+    stockIn
+);
 
-router.post("/stock-out", stockOut);
+router.post(
+    "/stock-out",
+    authMiddleware,
+    authorizeRoles("ADMIN", "STAFF"),
+    stockOut
+);
 
 module.exports = router;

@@ -64,6 +64,8 @@ const stockIn = async (req, res, next) => {
             reference
         } = req.body;
 
+        const userId = req.user.id;
+
         if (!product_id) {
             return res.status(400).json({
                 success: false,
@@ -137,15 +139,17 @@ const stockIn = async (req, res, next) => {
         await connection.query(`
             INSERT INTO stock_movements (
                 product_id,
+                user_id,
                 movement_type,
                 quantity,
                 previous_quantity,
                 new_quantity,
                 reference
             )
-            VALUES (?, 'IN', ?, ?, ?, ?)
+            VALUES (?, ?, 'IN', ?, ?, ?, ?)
         `, [
             product_id,
+            userId,
             numericQuantity,
             previousQuantity,
             newQuantity,
@@ -184,6 +188,7 @@ const stockOut = async (req, res, next) => {
             quantity,
             reference
         } = req.body;
+        const userId = req.user.id;
 
         if (!product_id) {
             return res.status(400).json({
@@ -248,15 +253,17 @@ const stockOut = async (req, res, next) => {
         await connection.query(`
             INSERT INTO stock_movements (
                 product_id,
+                user_id,
                 movement_type,
                 quantity,
                 previous_quantity,
                 new_quantity,
                 reference
             )
-            VALUES (?, 'OUT', ?, ?, ?, ?)
+            VALUES (?, ?, 'OUT', ?, ?, ?, ?)
         `, [
             product_id,
+            userId,
             numericQuantity,
             previousQuantity,
             newQuantity,
