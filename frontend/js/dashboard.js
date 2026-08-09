@@ -2,6 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadDashboard();
 
+    requireAuthentication();
+
+    loadCurrentUser();
+
+    setupLogout();
+
+    loadDashboard();
+
 });
 
 
@@ -617,5 +625,155 @@ function escapeHTML(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| REQUIRE AUTHENTICATION
+|--------------------------------------------------------------------------
+*/
+
+function requireAuthentication() {
+
+    const token =
+        localStorage.getItem("token");
+
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
+
+    return true;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| LOAD CURRENT USER
+|--------------------------------------------------------------------------
+*/
+
+function loadCurrentUser() {
+
+    const storedUser =
+        localStorage.getItem("user");
+
+
+    if (!storedUser) {
+        return;
+    }
+
+
+    try {
+
+        const user =
+            JSON.parse(storedUser);
+
+
+        const nameElement =
+            document.getElementById("userName");
+
+
+        const roleElement =
+            document.getElementById("userRole");
+
+
+        const avatarElement =
+            document.getElementById("userAvatar");
+
+
+        if (nameElement) {
+
+            nameElement.textContent =
+                user.name || "User";
+
+        }
+
+
+        if (roleElement) {
+
+            roleElement.textContent =
+                user.role || "STAFF";
+
+        }
+
+
+        if (
+            avatarElement &&
+            user.name
+        ) {
+
+            avatarElement.textContent =
+                user.name
+                    .charAt(0)
+                    .toUpperCase();
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load user:",
+            error
+        );
+
+    }
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| LOGOUT
+|--------------------------------------------------------------------------
+*/
+
+function setupLogout() {
+
+    const logoutButton =
+        document.getElementById(
+            "logoutButton"
+        );
+
+
+    if (!logoutButton) {
+        return;
+    }
+
+
+    logoutButton.addEventListener(
+        "click",
+        () => {
+
+            /*
+            | Remove authentication information
+            */
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "user"
+            );
+
+
+            /*
+            | Return to login
+            */
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
 
 }

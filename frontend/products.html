@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Fabric Store | Products</title>
+
+
+<!-- Bootstrap 5 -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+
+<!-- Bootstrap Icons -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+>
+
+
+<!-- Our CSS -->
+
+<link
+    rel="stylesheet"
+    href="css/style.css"
+>
+```
+
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+```
+<!-- =========================================================
+     SIDEBAR
+========================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="brand">
+
+        <div class="brand-icon">
+
+            <i class="bi bi-shop"></i>
+
+        </div>
+
+
+        <div>
+
+            <h5>Fabric Store</h5>
+
+            <small>
+                Inventory System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+
+        <p class="nav-label">
+            MAIN
+        </p>
+
+
+        <a
+            href="dashboard.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="products.html"
+            class="nav-link active"
+        >
+
+            <i class="bi bi-box-seam"></i>
+
+            <span>
+                Products
+            </span>
+
+        </a>
+
+
+        <a
+            href="inventory.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-boxes"></i>
+
+            <span>
+                Inventory
+            </span>
+
+        </a>
+
+
+        <a
+            href="inventory.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-arrow-left-right"></i>
+
+            <span>
+                Stock Movements
+            </span>
+
+        </a>
+
+
+        <p class="nav-label mt-4">
+            MANAGEMENT
+        </p>
+
+
+        <a
+            href="#"
+            class="nav-link"
+        >
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Users
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="nav-link"
+        >
+
+            <i class="bi bi-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout-btn"
+            id="logoutButton"
+            type="button"
+        >
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </button>
+
+    </div>
+
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN AREA
+========================================================== -->
+
+<div class="main-area">
+
+
+    <!-- =====================================================
+         TOPBAR
+    ====================================================== -->
+
+    <header class="topbar">
+
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+        >
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+
+        <div class="topbar-right">
+
+
+            <button
+                class="icon-btn"
+                type="button"
+                aria-label="Notifications"
+            >
+
+                <i class="bi bi-bell"></i>
+
+                <span
+                    class="notification-dot"
+                ></span>
+
+            </button>
+
+
+            <div class="user-profile">
+
+
+                <div
+                    class="avatar"
+                    id="userAvatar"
+                >
+                    A
+                </div>
+
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        Admin
+                    </strong>
+
+
+                    <small id="userRole">
+                        Administrator
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+
+    <main class="content">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+
+            <div>
+
+                <p class="text-muted mb-1">
+                    Inventory Management
+                </p>
+
+
+                <h2>
+                    Products
+                </h2>
+
+
+                <p class="text-muted">
+                    Manage your fabric products and product information.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    class="btn btn-primary"
+                    id="addProductButton"
+                    type="button"
+                >
+
+                    <i class="bi bi-plus-lg me-2"></i>
+
+                    Add Product
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             SEARCH AND FILTERS
+        ================================================== -->
+
+        <div class="dashboard-card mb-4">
+
+
+            <div class="card-header-custom">
+
+
+                <div>
+
+                    <h5>
+                        Product Search
+                    </h5>
+
+                    <p>
+                        Search and filter your fabric inventory.
+                    </p>
+
+                </div>
+
+
+                <span
+                    class="text-muted"
+                    id="productsCount"
+                >
+                    0 products
+                </span>
+
+
+            </div>
+
+
+            <div class="p-4">
+
+
+                <div class="row g-3">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="col-lg-5">
+
+
+                        <label
+                            for="productSearch"
+                            class="form-label"
+                        >
+                            Search products
+                        </label>
+
+
+                        <div class="input-group">
+
+
+                            <span class="input-group-text">
+
+                                <i class="bi bi-search"></i>
+
+                            </span>
+
+
+                            <input
+                                type="search"
+                                id="productSearch"
+                                class="form-control"
+                                placeholder="Search by product name..."
+                            >
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="col-lg-3">
+
+
+                        <label
+                            for="categoryFilter"
+                            class="form-label"
+                        >
+                            Category
+                        </label>
+
+
+                        <select
+                            id="categoryFilter"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Categories
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                    <!-- STOCK STATUS -->
+
+                    <div class="col-lg-2">
+
+
+                        <label
+                            for="stockFilter"
+                            class="form-label"
+                        >
+                            Stock Status
+                        </label>
+
+
+                        <select
+                            id="stockFilter"
+                            class="form-select"
+                        >
+
+                            <option value="">
+                                All Stock
+                            </option>
+
+                            <option value="in_stock">
+                                In Stock
+                            </option>
+
+                            <option value="low_stock">
+                                Low Stock
+                            </option>
+
+                            <option value="out_of_stock">
+                                Out of Stock
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                    <!-- RESET -->
+
+                    <div class="col-lg-2 d-flex align-items-end">
+
+
+                        <button
+                            type="button"
+                            class="btn btn-light border w-100"
+                            id="resetFilters"
+                        >
+
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>
+
+                            Reset
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             PRODUCTS TABLE
+        ================================================== -->
+
+        <div class="dashboard-card">
+
+
+            <div class="card-header-custom">
+
+
+                <div>
+
+                    <h5>
+                        Product Inventory
+                    </h5>
+
+                    <p>
+                        All fabric products in your catalog.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="text-muted small"
+                    id="productsPageInfo"
+                >
+                </div>
+
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="productsLoading"
+                class="text-center py-5"
+            >
+
+                <div
+                    class="spinner-border text-primary"
+                    role="status"
+                ></div>
+
+
+                <p class="text-muted mt-3 mb-0">
+                    Loading products...
+                </p>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="productsError"
+                class="alert alert-danger mx-4 mt-4 d-none"
+            ></div>
+
+
+            <!-- TABLE -->
+
+            <div
+                class="table-responsive"
+                id="productsTableWrapper"
+            >
+
+                <table
+                    class="table dashboard-table mb-0"
+                >
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Product
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Supplier
+                            </th>
+
+                            <th>
+                                Price / Yard
+                            </th>
+
+                            <th>
+                                Stock
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th class="text-end">
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="productsTableBody"
+                    >
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="productsEmpty"
+                class="empty-state d-none"
+            >
+
+                <i
+                    class="bi bi-box-seam"
+                ></i>
+
+
+                <h5>
+                    No products found
+                </h5>
+
+
+                <p>
+                    Try changing your search or filters.
+                </p>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+
+            <div
+                id="productsPagination"
+                class="p-4"
+            ></div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+```
+
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script src="js/api.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/products.js"></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+</body>
+
+</html>
