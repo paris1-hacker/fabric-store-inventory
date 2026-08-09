@@ -1,17 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const loginForm =
-        document.getElementById("loginForm");
+    const signupForm =
+        document.getElementById("signupForm");
 
 
-    if (loginForm) {
-
-        loginForm.addEventListener(
-            "submit",
-            handleLogin
-        );
-
-    }
+    signupForm.addEventListener(
+        "submit",
+        handleSignup
+    );
 
 
     setupPasswordToggle();
@@ -21,47 +17,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /*
 |--------------------------------------------------------------------------
-| LOGIN
+| HANDLE SIGN UP
 |--------------------------------------------------------------------------
 */
 
-async function handleLogin(event) {
+async function handleSignup(event) {
 
+    // VERY IMPORTANT:
+    // Prevent the browser from submitting the form as a GET request.
     event.preventDefault();
 
 
+    const name =
+        document.getElementById("name")
+            .value
+            .trim();
+
+
     const email =
-        document.getElementById("email")
+        document.getElementById("signupEmail")
             .value
             .trim();
 
 
     const password =
-        document.getElementById("password")
+        document.getElementById("signupPassword")
+            .value;
+
+
+    const role =
+        document.getElementById("role")
             .value;
 
 
     const errorBox =
-        document.getElementById("loginError");
+        document.getElementById("signupError");
+
+
+    const successBox =
+        document.getElementById("signupSuccess");
 
 
     const button =
-        document.getElementById("loginButton");
+        document.getElementById("signupButton");
 
 
     const buttonText =
-        document.getElementById("loginButtonText");
+        document.getElementById("signupButtonText");
 
 
     const spinner =
-        document.getElementById("loginSpinner");
+        document.getElementById("signupSpinner");
 
 
-    // Clear previous error
+    // Clear previous messages
 
     errorBox.classList.add("d-none");
-
-    errorBox.textContent = "";
+    successBox.classList.add("d-none");
 
 
     // Loading state
@@ -69,7 +81,7 @@ async function handleLogin(event) {
     button.disabled = true;
 
     buttonText.textContent =
-        "Signing in...";
+        "Creating account...";
 
     spinner.classList.remove("d-none");
 
@@ -78,29 +90,34 @@ async function handleLogin(event) {
 
         /*
         |--------------------------------------------------------------------------
-        | CALL BACKEND
+        | SEND DATA TO EXPRESS
         |--------------------------------------------------------------------------
         */
 
         const response =
             await apiPost(
-                "/auth/login",
+                "/auth/register",
                 {
+                    name,
                     email,
-                    password
+                    password,
+                    role
                 }
             );
 
 
         console.log(
-            "Login response:",
+            "Registration successful:",
             response
         );
 
 
         /*
         |--------------------------------------------------------------------------
-        | GET TOKEN + USER
+        | YOUR BACKEND RETURNS:
+        |
+        | response.data.user
+        | response.data.token
         |--------------------------------------------------------------------------
         */
 
@@ -112,20 +129,7 @@ async function handleLogin(event) {
             response.data.user;
 
 
-        if (!token) {
-
-            throw new Error(
-                "Login succeeded but no authentication token was returned."
-            );
-
-        }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | SAVE JWT
-        |--------------------------------------------------------------------------
-        */
+        // Save JWT
 
         localStorage.setItem(
             "token",
@@ -133,11 +137,7 @@ async function handleLogin(event) {
         );
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | SAVE USER
-        |--------------------------------------------------------------------------
-        */
+        // Save user
 
         localStorage.setItem(
             "user",
@@ -145,33 +145,42 @@ async function handleLogin(event) {
         );
 
 
-        console.log(
-            "Authentication successful."
+        // Show success
+
+        successBox.textContent =
+            response.message ||
+            "Account created successfully.";
+
+        successBox.classList.remove(
+            "d-none"
         );
 
 
         /*
         |--------------------------------------------------------------------------
-        | GO TO DASHBOARD
+        | REDIRECT TO DASHBOARD
         |--------------------------------------------------------------------------
         */
 
-        window.location.href =
-            "dashboard.html";
+        setTimeout(() => {
+
+            window.location.href =
+                "dashboard.html";
+
+        }, 800);
 
 
     } catch (error) {
 
         console.error(
-            "Login failed:",
+            "Registration failed:",
             error
         );
 
 
         errorBox.textContent =
             error.message ||
-            "Invalid email or password.";
-
+            "Unable to create account.";
 
         errorBox.classList.remove(
             "d-none"
@@ -183,7 +192,7 @@ async function handleLogin(event) {
         button.disabled = false;
 
         buttonText.textContent =
-            "Sign in";
+            "Create account";
 
         spinner.classList.add(
             "d-none"
@@ -204,19 +213,14 @@ function setupPasswordToggle() {
 
     const button =
         document.getElementById(
-            "togglePassword"
+            "toggleSignupPassword"
         );
 
 
     const password =
         document.getElementById(
-            "password"
+            "signupPassword"
         );
-
-
-    if (!button || !password) {
-        return;
-    }
 
 
     button.addEventListener(
