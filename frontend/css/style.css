@@ -437,15 +437,25 @@ a {
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+
+/* =========================================
+   TABLET & MOBILE
+========================================= */
 
 @media (max-width: 991px) {
 
     .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 260px;
+
         transform: translateX(-100%);
-        transition: 0.3s;
+        transition: transform 0.3s ease;
+
+        z-index: 1050;
     }
 
     .sidebar.show {
@@ -460,13 +470,19 @@ a {
     .menu-toggle {
         display: block;
         margin-right: auto;
+        position: relative;
+        z-index: 1100;
     }
 
     .topbar {
         justify-content: space-between;
     }
-
 }
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
 
 @media (max-width: 576px) {
 
@@ -485,8 +501,8 @@ a {
     .user-info {
         display: none;
     }
-
 }
+
 
 
 /* =========================================
