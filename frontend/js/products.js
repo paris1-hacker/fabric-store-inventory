@@ -1481,7 +1481,7 @@ id
 
 
 window.location.href =
-    `product-details.html?id=${id}`;
+    `view-product.html?id=${id}`;
 
 
 }
