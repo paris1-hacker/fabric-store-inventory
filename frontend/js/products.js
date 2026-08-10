@@ -1,10 +1,10 @@
                                                                         
 
 const PRODUCTS_API =
-"http://localhost:5000/api/products";
+"/api/products";
 
 const CATEGORIES_API =
-"http://localhost:5000/api/categories";
+"/api/categories";
 
 let currentPage = 1;
 

@@ -1,5 +1,5 @@
 const SETTINGS_API =
-"http://localhost:5000/api/settings";
+"/api/settings";
 
 // ========================================
 // PAGE INITIALIZATION

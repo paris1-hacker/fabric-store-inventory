@@ -1,4 +1,4 @@
-const MOVEMENTS_API = "http://localhost:5000/api/inventory/movements";
+const MOVEMENTS_API = "/api/inventory/movements";
 let allMovements = [];
 let filteredMovements = [];
 let movementCurrentPage = 1;

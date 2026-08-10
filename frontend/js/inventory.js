@@ -1,5 +1,5 @@
 const INVENTORY_API =
-    "http://localhost:5000/api/inventory";
+    "/api/inventory";
 
 let currentPage = 1;
 

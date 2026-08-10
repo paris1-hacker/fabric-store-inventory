@@ -1,8 +1,8 @@
 const PRODUCTS_API =
-"http://localhost:5000/api/products";
+"/api/products";
 
 const INVENTORY_API =
-"http://localhost:5000/api/inventory";
+"/api/inventory";
 
 let selectedProductStock = 0;
 
