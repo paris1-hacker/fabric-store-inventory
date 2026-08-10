@@ -124,6 +124,7 @@ const updateSupplier = async (req, res, next) => {
     }
 };
 
+
 const deleteSupplier = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -144,18 +145,24 @@ const deleteSupplier = async (req, res, next) => {
             success: true,
             message: "Supplier deleted successfully"
         });
+
     } catch (error) {
-         // MySQL foreign key constraint
-            if (error.code === "ER_ROW_IS_REFERENCED_2") {
-                return res.status(409).json({
-                    success: false,
-                    message:
-                        "Cannot delete this supplier because it is currently being used by one or more products. Please reassign or remove those products first."
-                });
-            }
+
+        // Supplier is being used by a product
+        if (error.code === "ER_ROW_IS_REFERENCED_2") {
+            return res.status(409).json({
+                success: false,
+                message:
+                    "Cannot delete this supplier because it is currently being used by one or more products. Please reassign or remove those products first."
+            });
+        }
+
+        // Send all other errors to error middleware
+        next(error);
     }
 };
- 
+
+
          
 module.exports = {
     getSuppliers,

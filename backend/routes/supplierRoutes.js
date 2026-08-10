@@ -1,3 +1,4 @@
+
 const express = require("express");
 
 const {
@@ -7,21 +8,69 @@ const {
     updateSupplier,
     deleteSupplier
 } = require("../controllers/supplierController");
-const authMiddleware = require("../middleware/authMiddleware");
 
+const authMiddleware = require("../middleware/authMiddleware");
 const authorizeRoles = require("../middleware/roleMiddleware");
 
 const router = express.Router();
 
-router.get("/", getSuppliers, authMiddleware);
 
-router.get("/:id", getSupplier, authMiddleware);
+// ============================================
+// VIEW SUPPLIERS
+// Authenticated users can view suppliers
+// ============================================
 
-router.post("/", createSupplier, authorizeRoles("ADMIN"), authMiddleware);
+router.get(
+    "/",
+    authMiddleware,
+    getSuppliers
+);
 
-router.put("/:id", updateSupplier,authorizeRoles("ADMIN"),  authMiddleware, );
 
-router.delete("/:id", deleteSupplier,authorizeRoles("ADMIN"), authMiddleware, );
+router.get(
+    "/:id",
+    authMiddleware,
+    getSupplier
+);
+
+
+// ============================================
+// CREATE SUPPLIER
+// ADMIN ONLY
+// ============================================
+
+router.post(
+    "/",
+    authMiddleware,
+    authorizeRoles("ADMIN"),
+    createSupplier
+);
+
+
+// ============================================
+// UPDATE SUPPLIER
+// ADMIN ONLY
+// ============================================
+
+router.put(
+    "/:id",
+    authMiddleware,
+    authorizeRoles("ADMIN"),
+    updateSupplier
+);
+
+
+// ============================================
+// DELETE SUPPLIER
+// ADMIN ONLY
+// ============================================
+
+router.delete(
+    "/:id",
+    authMiddleware,
+    authorizeRoles("ADMIN"),
+    deleteSupplier
+);
+
 
 module.exports = router;
-

@@ -233,6 +233,8 @@ const deleteProduct = async (req, res, next) => {
                         "Cannot delete this product because it is currently being used by one or more inventory records. Please reassign or remove those records first."
                 });
             }
+        // Send all other errors to error middleware
+        next(error);
     }
 };
 
