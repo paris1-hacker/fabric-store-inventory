@@ -1,32 +1,847 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Fabric Store | Login</title>
+    <title>
+        Fabric Store Inventory
+    </title>
 
+    <meta
+        name="description"
+        content="Manage your fabric store inventory, stock movements, products and users with ease."
+    >
+
+    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
+    <!-- Bootstrap Icons -->
     <link
         rel="stylesheet"
-        href="css/style.css"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="css/index.css"
     >
 </head>
 
+
 <body>
 
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar navbar-expand-lg landing-navbar">
+
+        <div class="container">
+
+            <a
+                href="index.html"
+                class="navbar-brand brand"
+            >
+
+                <span class="brand-icon">
+                    <i class="bi bi-box-seam"></i>
+                </span>
+
+                <span>
+                    Fabric<span>Store</span>
+                </span>
+
+            </a>
+
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+
+            <div
+                class="collapse navbar-collapse"
+                id="mainNavbar"
+            >
+
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#features"
+                        >
+                            Features
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#about"
+                        >
+                            About
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item ms-lg-2">
+
+                        <a
+                            href="login.html"
+                            class="btn btn-outline-primary nav-login-btn"
+                            id="navLoginButton"
+                        >
+
+                            <i class="bi bi-box-arrow-in-right me-1"></i>
+
+                            Login
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
     <main>
-        <!-- Login UI will go here -->
+
+        <section class="hero-section">
+
+            <div class="hero-pattern"></div>
+
+            <div class="container position-relative">
+
+                <div class="row align-items-center min-vh-hero">
+
+                    <!-- Hero Text -->
+
+                    <div class="col-lg-6">
+
+                        <div class="hero-content">
+
+                            <div class="hero-badge">
+
+                                <span class="badge-dot"></span>
+
+                                Fabric Store Management System
+
+                            </div>
+
+
+                            <h1>
+
+                                Manage your fabric store
+                                <span>smarter.</span>
+
+                            </h1>
+
+
+                            <p class="hero-description">
+
+                                Keep track of your products, inventory,
+                                stock movements and users from one
+                                simple and powerful system.
+
+                            </p>
+
+
+                            <div class="hero-buttons">
+
+                                <a
+                                    href="login.html"
+                                    class="btn btn-primary btn-lg hero-primary-btn"
+                                    id="heroPrimaryButton"
+                                >
+
+                                    <span id="heroPrimaryText">
+                                        Login to Dashboard
+                                    </span>
+
+                                    <i
+                                        class="bi bi-arrow-right ms-2"
+                                        id="heroPrimaryIcon"
+                                    ></i>
+
+                                </a>
+
+
+                                <a
+                                    href="#features"
+                                    class="btn btn-light btn-lg hero-secondary-btn"
+                                >
+
+                                    <i class="bi bi-grid me-2"></i>
+
+                                    Explore Features
+
+                                </a>
+
+                            </div>
+
+
+                            <div class="hero-trust">
+
+                                <div class="trust-item">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Easy to use
+
+                                </div>
+
+
+                                <div class="trust-item">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Secure access
+
+                                </div>
+
+
+                                <div class="trust-item">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Real-time tracking
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Dashboard Preview -->
+
+                    <div class="col-lg-6">
+
+                        <div class="dashboard-preview-wrapper">
+
+                            <div class="floating-card floating-card-one">
+
+                                <div class="floating-icon stock-in-icon">
+
+                                    <i class="bi bi-arrow-down-circle"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <small>
+                                        Stock In
+                                    </small>
+
+                                    <strong>
+                                        +125 yards
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="floating-card floating-card-two">
+
+                                <div class="floating-icon stock-out-icon">
+
+                                    <i class="bi bi-arrow-up-circle"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <small>
+                                        Stock Out
+                                    </small>
+
+                                    <strong>
+                                        -38 yards
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="dashboard-preview">
+
+                                <div class="preview-topbar">
+
+                                    <div class="preview-brand">
+
+                                        <span class="preview-brand-icon">
+
+                                            <i class="bi bi-box-seam"></i>
+
+                                        </span>
+
+                                        <span>
+                                            FabricStore
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="preview-user">
+
+                                        <span></span>
+
+                                        Admin
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="preview-body">
+
+                                    <div class="preview-sidebar">
+
+                                        <div class="preview-menu active">
+
+                                            <i class="bi bi-grid"></i>
+
+                                        </div>
+
+                                        <div class="preview-menu">
+
+                                            <i class="bi bi-box-seam"></i>
+
+                                        </div>
+
+                                        <div class="preview-menu">
+
+                                            <i class="bi bi-archive"></i>
+
+                                        </div>
+
+                                        <div class="preview-menu">
+
+                                            <i class="bi bi-arrow-left-right"></i>
+
+                                        </div>
+
+                                        <div class="preview-menu">
+
+                                            <i class="bi bi-people"></i>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="preview-content">
+
+                                        <div class="preview-heading">
+
+                                            <div>
+
+                                                <small>
+                                                    Overview
+                                                </small>
+
+                                                <h5>
+                                                    Inventory Dashboard
+                                                </h5>
+
+                                            </div>
+
+                                            <div class="preview-date">
+                                                Today
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="preview-stats">
+
+                                            <div class="preview-stat">
+
+                                                <div class="preview-stat-icon">
+
+                                                    <i class="bi bi-box-seam"></i>
+
+                                                </div>
+
+                                                <div>
+
+                                                    <small>
+                                                        Products
+                                                    </small>
+
+                                                    <strong>
+                                                        248
+                                                    </strong>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="preview-stat">
+
+                                                <div class="preview-stat-icon">
+
+                                                    <i class="bi bi-stack"></i>
+
+                                                </div>
+
+                                                <div>
+
+                                                    <small>
+                                                        Stock
+                                                    </small>
+
+                                                    <strong>
+                                                        1,840
+                                                    </strong>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="preview-table-card">
+
+                                            <div class="preview-table-header">
+
+                                                <strong>
+                                                    Recent Movements
+                                                </strong>
+
+                                                <span>
+                                                    View all
+                                                </span>
+
+                                            </div>
+
+
+                                            <div class="preview-row">
+
+                                                <div class="preview-product">
+
+                                                    <span class="fabric-dot dot-one"></span>
+
+                                                    Ankara Fabric
+
+                                                </div>
+
+                                                <span class="preview-in">
+                                                    +120
+                                                </span>
+
+                                            </div>
+
+
+                                            <div class="preview-row">
+
+                                                <div class="preview-product">
+
+                                                    <span class="fabric-dot dot-two"></span>
+
+                                                    Royal Blue
+
+                                                </div>
+
+                                                <span class="preview-out">
+                                                    -35
+                                                </span>
+
+                                            </div>
+
+
+                                            <div class="preview-row">
+
+                                                <div class="preview-product">
+
+                                                    <span class="fabric-dot dot-three"></span>
+
+                                                    Lace Fabric
+
+                                                </div>
+
+                                                <span class="preview-in">
+                                                    +80
+                                                </span>
+
+                                            </div>
+
+
+                                            <div class="preview-row">
+
+                                                <div class="preview-product">
+
+                                                    <span class="fabric-dot dot-four"></span>
+
+                                                    Cotton Print
+
+                                                </div>
+
+                                                <span class="preview-out">
+                                                    -18
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             FEATURES
+        ========================== -->
+
+        <section
+            class="features-section"
+            id="features"
+        >
+
+            <div class="container">
+
+                <div class="section-heading text-center">
+
+                    <span class="section-label">
+                        POWERFUL FEATURES
+                    </span>
+
+                    <h2>
+                        Everything you need to manage your store
+                    </h2>
+
+                    <p>
+                        Designed to make everyday inventory management
+                        easier, faster and more organized.
+                    </p>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+
+                                <i class="bi bi-box-seam"></i>
+
+                            </div>
+
+                            <h5>
+                                Product Management
+                            </h5>
+
+                            <p>
+                                Add, edit and organize your fabric
+                                products, categories and suppliers.
+                            </p>
+
+                            <a href="login.html">
+                                Manage Products
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+
+                                <i class="bi bi-clipboard-data"></i>
+
+                            </div>
+
+                            <h5>
+                                Inventory Tracking
+                            </h5>
+
+                            <p>
+                                Know exactly how much stock you have
+                                and keep your inventory up to date.
+                            </p>
+
+                            <a href="login.html">
+                                View Inventory
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+
+                                <i class="bi bi-arrow-left-right"></i>
+
+                            </div>
+
+                            <h5>
+                                Stock Movements
+                            </h5>
+
+                            <p>
+                                Track every stock-in and stock-out
+                                transaction with complete movement history.
+                            </p>
+
+                            <a href="login.html">
+                                Track Movements
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="feature-card">
+
+                            <div class="feature-icon">
+
+                                <i class="bi bi-people"></i>
+
+                            </div>
+
+                            <h5>
+                                User Management
+                            </h5>
+
+                            <p>
+                                Manage staff accounts and control
+                                access to your store management system.
+                            </p>
+
+                            <a href="login.html">
+                                Manage Users
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ABOUT / CTA
+        ========================== -->
+
+        <section
+            class="about-section"
+            id="about"
+        >
+
+            <div class="container">
+
+                <div class="cta-card">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-8">
+
+                            <span class="section-label">
+                                READY TO GET STARTED?
+                            </span>
+
+                            <h2>
+                                Take control of your inventory today.
+                            </h2>
+
+                            <p>
+                                Keep your products organized, monitor
+                                stock levels and manage your team from
+                                one central dashboard.
+                            </p>
+
+                        </div>
+
+
+                        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+
+                            <a
+                                href="login.html"
+                                class="btn btn-light btn-lg cta-button"
+                            >
+
+                                Login to Dashboard
+
+                                <i class="bi bi-arrow-right ms-2"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <script src="js/auth.js"></script>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+
+                    <div class="footer-brand">
+
+                        <span class="brand-icon">
+
+                            <i class="bi bi-box-seam"></i>
+
+                        </span>
+
+                        <span>
+                            Fabric<span>Store</span>
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Simple inventory management for your fabric business.
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6 text-md-end">
+
+                    <p class="copyright">
+                        © <span id="currentYear"></span>
+                        Fabric Store Inventory.
+                        All rights reserved.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Bootstrap JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <!-- Custom JS -->
+
+    <script src="js/index.js"></script>
 
 </body>
+
 </html>
+```
