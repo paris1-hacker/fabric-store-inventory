@@ -17,11 +17,11 @@ router.get("/", getSuppliers, authMiddleware);
 
 router.get("/:id", getSupplier, authMiddleware);
 
-router.post("/", createSupplier, authMiddleware, authorizeRoles("ADMIN"));
+router.post("/", createSupplier, authorizeRoles("ADMIN"), authMiddleware);
 
-router.put("/:id", updateSupplier, authMiddleware, authorizeRoles("ADMIN"));
+router.put("/:id", updateSupplier,authorizeRoles("ADMIN"),  authMiddleware, );
 
-router.delete("/:id", deleteSupplier, authMiddleware, authorizeRoles("ADMIN"));
+router.delete("/:id", deleteSupplier,authorizeRoles("ADMIN"), authMiddleware, );
 
 module.exports = router;
 
