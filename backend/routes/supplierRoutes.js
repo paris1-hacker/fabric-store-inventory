@@ -7,17 +7,21 @@ const {
     updateSupplier,
     deleteSupplier
 } = require("../controllers/supplierController");
+const authMiddleware = require("../middleware/authMiddleware");
+
+const authorizeRoles = require("../middleware/roleMiddleware");
 
 const router = express.Router();
 
-router.get("/", getSuppliers);
+router.get("/", getSuppliers, authMiddleware);
 
-router.get("/:id", getSupplier);
+router.get("/:id", getSupplier, authMiddleware);
 
-router.post("/", createSupplier);
+router.post("/", createSupplier, authMiddleware, authorizeRoles("ADMIN"));
 
-router.put("/:id", updateSupplier);
+router.put("/:id", updateSupplier, authMiddleware, authorizeRoles("ADMIN"));
 
-router.delete("/:id", deleteSupplier);
+router.delete("/:id", deleteSupplier, authMiddleware, authorizeRoles("ADMIN"));
 
 module.exports = router;
+
