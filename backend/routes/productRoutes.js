@@ -19,9 +19,11 @@ router.get("/:id", getProduct);
 
 // router.post("/", createProduct);
 
-router.put("/:id", updateProduct);
+router.put("/:id", authMiddleware,
+    authorizeRoles("ADMIN"),updateProduct);
 
-router.delete("/:id", deleteProduct);
+router.delete("/:id",authMiddleware,
+    authorizeRoles("ADMIN"), deleteProduct);
 
 router.post(
     "/",
