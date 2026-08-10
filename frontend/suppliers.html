@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Fabric Store | Suppliers</title>
+
+<!-- Bootstrap -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+<!-- Bootstrap Icons -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+>
+
+<!-- Main CSS -->
+<link
+    rel="stylesheet"
+    href="css/style.css"
+>
+```
+
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+```
+<!-- ================= SIDEBAR ================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <!-- Brand -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+
+            <i class="bi bi-shop"></i>
+
+        </div>
+
+        <div>
+
+            <h5>
+                Fabric Store
+            </h5>
+
+            <small>
+                Inventory System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-nav">
+
+
+        <p class="nav-label">
+            MAIN
+        </p>
+
+
+        <!-- Dashboard -->
+
+        <a
+            href="dashboard.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- Products -->
+
+        <a
+            href="products.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-box-seam"></i>
+
+            <span>
+                Products
+            </span>
+
+        </a>
+
+
+        <!-- Categories -->
+
+        <a
+            href="categories.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-tags"></i>
+
+            <span>
+                Categories
+            </span>
+
+        </a>
+
+
+        <!-- Inventory -->
+
+        <a
+            href="inventory.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-boxes"></i>
+
+            <span>
+                Inventory
+            </span>
+
+        </a>
+
+
+        <!-- Stock Movements -->
+
+        <a
+            href="stock-movements.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-arrow-left-right"></i>
+
+            <span>
+                Stock Movements
+            </span>
+
+        </a>
+
+
+        <p class="nav-label mt-4">
+            MANAGEMENT
+        </p>
+
+
+        <!-- Suppliers -->
+
+        <a
+            href="suppliers.html"
+            class="nav-link active"
+        >
+
+            <i class="bi bi-truck"></i>
+
+            <span>
+                Suppliers
+            </span>
+
+        </a>
+
+
+        <!-- Users -->
+
+        <a
+            href="users.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-people"></i>
+
+            <span>
+                Users
+            </span>
+
+        </a>
+
+
+        <!-- Settings -->
+
+        <a
+            href="settings.html"
+            class="nav-link"
+        >
+
+            <i class="bi bi-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- Logout -->
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout-btn"
+            id="logoutButton"
+        >
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </button>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- ================= MAIN AREA ================= -->
+
+<div class="main-area">
+
+
+    <!-- ================= TOPBAR ================= -->
+
+    <header class="topbar">
+
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+        >
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+
+        <div class="topbar-right">
+
+
+            <button
+                class="icon-btn"
+                type="button"
+            >
+
+                <i class="bi bi-bell"></i>
+
+                <span
+                    class="notification-dot"
+                ></span>
+
+            </button>
+
+
+            <div class="user-profile">
+
+
+                <div
+                    class="avatar"
+                    id="userAvatar"
+                >
+                    A
+                </div>
+
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        Admin
+                    </strong>
+
+                    <small id="userRole">
+                        Administrator
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <main class="content">
+
+
+        <!-- Page Heading -->
+
+        <div class="page-heading">
+
+
+            <div>
+
+                <p class="text-muted mb-1">
+                    Management
+                </p>
+
+                <h2>
+                    Suppliers
+                </h2>
+
+                <p class="text-muted">
+                    Manage fabric suppliers and their contact information.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="addSupplierButton"
+                >
+
+                    <i class="bi bi-plus-lg me-2"></i>
+
+                    Add Supplier
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= SUPPLIER CARD ================= -->
+
+        <div class="dashboard-card">
+
+
+            <!-- Header -->
+
+            <div class="card-header-custom">
+
+
+                <div>
+
+                    <h5>
+                        All Suppliers
+                    </h5>
+
+                    <p>
+                        Create, edit and manage your fabric suppliers.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        class="badge bg-light text-dark"
+                        id="supplierCount"
+                    >
+                        0 Suppliers
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Search -->
+
+            <div class="p-3 border-bottom">
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+
+
+                        <div class="input-group">
+
+                            <span
+                                class="input-group-text bg-white"
+                            >
+
+                                <i class="bi bi-search"></i>
+
+                            </span>
+
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="searchSupplier"
+                                placeholder="Search suppliers..."
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Table -->
+
+            <div class="table-responsive">
+
+
+                <table
+                    class="table dashboard-table align-middle mb-0"
+                >
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Supplier
+                            </th>
+
+                            <th>
+                                Contact Person
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Address
+                            </th>
+
+                            <th>
+                                Created
+                            </th>
+
+                            <th class="text-end">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="suppliersTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="text-center py-5"
+                            >
+
+                                <div
+                                    class="spinner-border text-primary"
+                                ></div>
+
+                                <p class="text-muted mt-2 mb-0">
+                                    Loading suppliers...
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     ADD / EDIT SUPPLIER MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="supplierModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+
+```
+<div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+
+            <div>
+
+                <h5
+                    class="modal-title"
+                    id="supplierModalTitle"
+                >
+                    Add Supplier
+                </h5>
+
+                <small class="text-muted">
+                    Enter the supplier information below.
+                </small>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+            ></button>
+
+
+        </div>
+
+
+
+        <form id="supplierForm">
+
+
+            <div class="modal-body">
+
+
+                <!-- Hidden ID -->
+
+                <input
+                    type="hidden"
+                    id="supplierId"
+                >
+
+
+                <div class="row g-3">
+
+
+                    <!-- Supplier Name -->
+
+                    <div class="col-md-6">
+
+                        <label
+                            for="supplierName"
+                            class="form-label"
+                        >
+                            Supplier Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="supplierName"
+                            placeholder="e.g. Lagos Textile Company"
+                            maxlength="150"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Contact Person -->
+
+                    <div class="col-md-6">
+
+                        <label
+                            for="contactPerson"
+                            class="form-label"
+                        >
+                            Contact Person
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="contactPerson"
+                            placeholder="e.g. John Okafor"
+                            maxlength="100"
+                        >
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="col-md-6">
+
+                        <label
+                            for="supplierPhone"
+                            class="form-label"
+                        >
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="supplierPhone"
+                            placeholder="e.g. 08012345678"
+                            maxlength="30"
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="col-md-6">
+
+                        <label
+                            for="supplierEmail"
+                            class="form-label"
+                        >
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="supplierEmail"
+                            placeholder="e.g. supplier@example.com"
+                            maxlength="150"
+                        >
+
+                    </div>
+
+
+                    <!-- Address -->
+
+                    <div class="col-12">
+
+                        <label
+                            for="supplierAddress"
+                            class="form-label"
+                        >
+                            Address
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="supplierAddress"
+                            rows="3"
+                            placeholder="Enter supplier address..."
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    data-bs-dismiss="modal"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="saveSupplierButton"
+                >
+
+                    <i class="bi bi-check-lg me-1"></i>
+
+                    Save Supplier
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     DELETE SUPPLIER MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="deleteSupplierModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+
+```
+<div class="modal-dialog modal-dialog-centered modal-sm">
+
+    <div class="modal-content">
+
+
+        <div class="modal-body text-center p-4">
+
+
+            <div
+                class="mb-3 mx-auto d-flex align-items-center justify-content-center rounded-circle bg-danger-subtle"
+                style="width:60px;height:60px;"
+            >
+
+                <i
+                    class="bi bi-trash text-danger fs-4"
+                ></i>
+
+            </div>
+
+
+            <h5>
+                Delete Supplier?
+            </h5>
+
+
+            <p class="text-muted mb-4">
+
+                Are you sure you want to delete
+
+                <strong id="deleteSupplierName">
+                </strong>?
+
+                <br>
+
+                This action cannot be undone.
+
+            </p>
+
+
+            <div class="d-flex gap-2">
+
+
+                <button
+                    type="button"
+                    class="btn btn-light w-50"
+                    data-bs-dismiss="modal"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-danger w-50"
+                    id="confirmDeleteButton"
+                >
+                    Delete
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
+
+<script src="js/api.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/suppliers.js"></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+</body>
+
+</html>

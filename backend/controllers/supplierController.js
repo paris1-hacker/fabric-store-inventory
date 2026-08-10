@@ -145,10 +145,18 @@ const deleteSupplier = async (req, res, next) => {
             message: "Supplier deleted successfully"
         });
     } catch (error) {
-        next(error);
+         // MySQL foreign key constraint
+            if (error.code === "ER_ROW_IS_REFERENCED_2") {
+                return res.status(409).json({
+                    success: false,
+                    message:
+                        "Cannot delete this supplier because it is currently being used by one or more products. Please reassign or remove those products first."
+                });
+            }
     }
 };
-
+ 
+         
 module.exports = {
     getSuppliers,
     getSupplier,

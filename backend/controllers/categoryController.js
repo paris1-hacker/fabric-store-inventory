@@ -104,6 +104,7 @@ const updateCategory = async (req, res, next) => {
     }
 };
 
+
 const deleteCategory = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -118,16 +119,32 @@ const deleteCategory = async (req, res, next) => {
             });
         }
 
-        await categoryModel.deleteCategory(id);
+        try {
+            await categoryModel.deleteCategory(id);
+        } catch (error) {
+
+            // MySQL foreign key constraint
+            if (error.code === "ER_ROW_IS_REFERENCED_2") {
+                return res.status(409).json({
+                    success: false,
+                    message:
+                        "Cannot delete this category because it is currently being used by one or more products. Please reassign or remove those products first."
+                });
+            }
+
+            throw error;
+        }
 
         res.status(200).json({
             success: true,
             message: "Category deleted successfully"
         });
+
     } catch (error) {
         next(error);
     }
 };
+
 
 module.exports = {
     getCategories,

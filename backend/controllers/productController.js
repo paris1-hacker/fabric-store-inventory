@@ -225,7 +225,14 @@ const deleteProduct = async (req, res, next) => {
             message: "Product deleted successfully"
         });
     } catch (error) {
-        next(error);
+         // MySQL foreign key constraint
+            if (error.code === "ER_ROW_IS_REFERENCED_2") {
+                return res.status(409).json({
+                    success: false,
+                    message:
+                        "Cannot delete this product because it is currently being used by one or more inventory records. Please reassign or remove those records first."
+                });
+            }
     }
 };
 
