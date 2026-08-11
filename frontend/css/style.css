@@ -1,3 +1,4 @@
+
 :root {
     --primary: #5b3cc4;
     --primary-dark: #452c9e;
@@ -10,16 +11,28 @@
     --white: #ffffff;
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--background);
     color: var(--text);
+    overflow-x: hidden;
 }
 
 a {
@@ -27,51 +40,95 @@ a {
 }
 
 
-/* =========================
+/* =========================================================
    APP LAYOUT
-========================= */
+========================================================= */
 
 .app-wrapper {
     min-height: 100vh;
+    width: 100%;
     display: flex;
 }
 
+.main-area {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+}
 
-/* =========================
+
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar {
     width: 250px;
-    min-height: 100vh;
+    height: 100vh;
+
     background: var(--sidebar);
     color: white;
+
     position: fixed;
-    left: 0;
     top: 0;
-    bottom: 0;
-    z-index: 1000;
+    left: 0;
+
+    z-index: 1050;
+
     display: flex;
     flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    transition: transform 0.3s ease;
 }
 
+
+/* Sidebar scrollbar */
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #3a3650;
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
 .brand {
-    height: 80px;
+    min-height: 80px;
+
     display: flex;
     align-items: center;
+
     gap: 12px;
+
     padding: 0 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    flex-shrink: 0;
 }
 
 .brand-icon {
     width: 38px;
     height: 38px;
+
+    flex-shrink: 0;
+
     border-radius: 10px;
+
     background: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 18px;
 }
 
@@ -85,29 +142,47 @@ a {
     font-size: 11px;
 }
 
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+========================================================= */
+
 .sidebar-nav {
     padding: 25px 15px;
+
     flex: 1;
 }
 
 .nav-label {
     font-size: 10px;
+
     color: #77748a;
+
     font-weight: 700;
+
     letter-spacing: 1px;
+
     padding: 0 12px;
+
     margin-bottom: 10px;
 }
 
 .nav-link {
     display: flex;
     align-items: center;
+
     gap: 13px;
+
     color: #aaa8b8;
+
     padding: 12px 13px;
+
     margin-bottom: 5px;
+
     border-radius: 8px;
+
     font-size: 14px;
+
     transition: 0.2s;
 }
 
@@ -125,22 +200,42 @@ a {
     background: var(--primary);
 }
 
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
 .sidebar-bottom {
-    padding: 20px 15px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 15px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    flex-shrink: 0;
+
+    background: var(--sidebar);
 }
 
 .logout-btn {
     border: 0;
+
     background: transparent;
+
     color: #aaa8b8;
+
     width: 100%;
+
     padding: 12px;
+
     text-align: left;
+
     display: flex;
-    gap: 13px;
     align-items: center;
+
+    gap: 13px;
+
     border-radius: 8px;
+
+    cursor: pointer;
 }
 
 .logout-btn:hover {
@@ -149,46 +244,59 @@ a {
 }
 
 
-/* =========================
-   MAIN AREA
-========================= */
-
-.main-area {
-    margin-left: 250px;
-    width: calc(100% - 250px);
-    min-height: 100vh;
-}
+/* =========================================================
+   TOPBAR
+========================================================= */
 
 .topbar {
     height: 80px;
+
     background: var(--white);
+
     border-bottom: 1px solid var(--border);
+
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: flex-end;
+
     padding: 0 30px;
+
+    position: relative;
+
+    z-index: 100;
 }
 
 .topbar-right {
     display: flex;
     align-items: center;
+
     gap: 25px;
 }
 
 .icon-btn {
     position: relative;
+
     border: 0;
+
     background: transparent;
+
     font-size: 20px;
+
     color: #666675;
+
+    cursor: pointer;
 }
 
 .notification-dot {
     width: 7px;
     height: 7px;
+
     border-radius: 50%;
+
     background: #dc3545;
+
     position: absolute;
+
     top: 2px;
     right: 1px;
 }
@@ -196,18 +304,26 @@ a {
 .user-profile {
     display: flex;
     align-items: center;
+
     gap: 10px;
 }
 
 .avatar {
     width: 40px;
     height: 40px;
+
+    flex-shrink: 0;
+
     border-radius: 50%;
+
     background: #eee9ff;
+
     color: var(--primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-weight: 700;
 }
 
@@ -225,17 +341,31 @@ a {
     color: var(--muted);
 }
 
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
 .menu-toggle {
     display: none;
+
     border: 0;
+
     background: transparent;
+
     font-size: 25px;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    padding: 5px 8px;
 }
 
 
-/* =========================
+/* =========================================================
    CONTENT
-========================= */
+========================================================= */
 
 .content {
     padding: 35px;
@@ -243,8 +373,11 @@ a {
 
 .page-heading {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     margin-bottom: 30px;
 }
 
@@ -258,34 +391,48 @@ a {
 }
 
 
-/* =========================
+/* =========================================================
    STAT CARDS
-========================= */
+========================================================= */
 
 .stat-card {
     background: var(--white);
+
     border: 1px solid var(--border);
+
     border-radius: 12px;
+
     padding: 22px;
+
     display: flex;
+
     gap: 17px;
+
     align-items: center;
+
     height: 100%;
+
     transition: 0.2s;
 }
 
 .stat-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
 .stat-icon {
     width: 50px;
     height: 50px;
+
+    flex-shrink: 0;
+
     border-radius: 10px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     font-size: 21px;
 }
 
@@ -309,39 +456,30 @@ a {
     color: #dc3545;
 }
 
-.stat-content span {
-    font-size: 12px;
-    color: var(--muted);
-}
 
-.stat-content h3 {
-    margin: 3px 0;
-    font-size: 25px;
-    font-weight: 700;
-}
-
-.stat-content small {
-    font-size: 11px;
-    color: var(--muted);
-}
-
-
-/* =========================
+/* =========================================================
    DASHBOARD CARDS
-========================= */
+========================================================= */
 
 .dashboard-card {
     background: var(--white);
+
     border: 1px solid var(--border);
+
     border-radius: 12px;
+
     overflow: hidden;
 }
 
 .card-header-custom {
     padding: 22px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: flex-start;
+
     border-bottom: 1px solid var(--border);
 }
 
@@ -352,29 +490,38 @@ a {
 
 .card-header-custom p {
     font-size: 12px;
+
     color: var(--muted);
+
     margin: 0;
 }
 
 .card-header-custom a {
     color: var(--primary);
+
     font-size: 12px;
+
     font-weight: 600;
 }
 
 .alert-count {
     background: #ffe8eb;
+
     color: #dc3545;
+
     padding: 4px 9px;
+
     border-radius: 20px;
+
     font-size: 11px;
+
     font-weight: 700;
 }
 
 
-/* =========================
+/* =========================================================
    TABLE
-========================= */
+========================================================= */
 
 .dashboard-table {
     margin: 0;
@@ -382,30 +529,44 @@ a {
 
 .dashboard-table th {
     background: #fafafd;
+
     color: var(--muted);
+
     font-size: 11px;
+
     text-transform: uppercase;
+
     letter-spacing: 0.4px;
+
     padding: 14px 20px;
+
     border-bottom: 1px solid var(--border);
+
+    white-space: nowrap;
 }
 
 .dashboard-table td {
     padding: 15px 20px;
+
     font-size: 13px;
+
     vertical-align: middle;
 }
 
 
-/* =========================
+/* =========================================================
    LOW STOCK
-========================= */
+========================================================= */
 
 .low-stock-item {
     padding: 16px 20px;
+
     border-bottom: 1px solid var(--border);
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 }
 
@@ -415,99 +576,286 @@ a {
 
 .low-stock-name {
     font-size: 13px;
+
     font-weight: 600;
 }
 
 .low-stock-category {
     font-size: 11px;
+
     color: var(--muted);
 }
 
 .low-stock-quantity {
     color: #dc3545;
+
     font-size: 12px;
+
     font-weight: 700;
 }
 
 .empty-state {
     text-align: center;
+
     color: var(--muted);
+
     padding: 30px 20px;
+
     font-size: 13px;
 }
 
 
+/* =========================================================
+   USERS
+========================================================= */
 
-/* =========================================
-   TABLET & MOBILE
-========================================= */
+.user-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f1f3f5;
+
+    font-weight: 600;
+}
+
+.user-table-avatar {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+
+    background: #f1f3f5;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+
+/* =========================================================
+   TABLET
+   992px AND BELOW
+========================================================= */
 
 @media (max-width: 991px) {
 
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
+    /* Main content takes full width */
 
+    .main-area {
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+
+    /* Sidebar starts hidden */
+
+    .sidebar {
         width: 260px;
 
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
 
-        z-index: 1050;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
     }
+
+
+    /* Sidebar opens */
 
     .sidebar.show {
         transform: translateX(0);
     }
 
-    .main-area {
-        margin-left: 0;
-        width: 100%;
-    }
+
+    /* Menu button appears */
 
     .menu-toggle {
         display: block;
+
         margin-right: auto;
+
         position: relative;
-        z-index: 1100;
+
+        z-index: 1101;
     }
 
+
+    /* Topbar */
+
     .topbar {
+        height: 70px;
+
+        padding: 0 20px;
+
         justify-content: space-between;
+    }
+
+
+    /* Content */
+
+    .content {
+        padding: 25px;
+    }
+
+
+    /* Heading */
+
+    .page-heading {
+        margin-bottom: 25px;
     }
 }
 
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
+/* =========================================================
+   MOBILE
+   576px AND BELOW
+========================================================= */
 
 @media (max-width: 576px) {
 
-    .content {
-        padding: 20px;
+    .topbar {
+        height: 65px;
+
+        padding: 0 15px;
     }
+
+
+    .menu-toggle {
+        font-size: 24px;
+    }
+
+
+    .topbar-right {
+        gap: 12px;
+    }
+
+
+    .content {
+        padding: 20px 15px;
+    }
+
 
     .page-heading {
         display: block;
+
+        margin-bottom: 20px;
     }
+
 
     .page-heading .btn {
         margin-top: 15px;
+
+        width: 100%;
     }
+
 
     .user-info {
         display: none;
     }
+
+
+    .card-header-custom {
+        display: block;
+
+        padding: 18px;
+    }
+
+
+    .card-header-custom > div:last-child {
+        margin-top: 12px;
+    }
+
+
+    /* Make tables horizontally scrollable */
+
+    .table-responsive {
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    .dashboard-table {
+        min-width: 700px;
+    }
+
+
+    /* Sidebar */
+
+    .sidebar {
+        width: 280px;
+    }
 }
 
 
+/* =========================================================
+   VERY SMALL PHONES
+   400px AND BELOW
+========================================================= */
 
-/* =========================================
+@media (max-width: 400px) {
+
+    .content {
+        padding: 15px 10px;
+    }
+
+
+    .topbar {
+        padding: 0 10px;
+    }
+
+
+    .sidebar {
+        width: 280px;
+    }
+
+
+    .brand {
+        padding: 0 18px;
+    }
+
+
+    .sidebar-nav {
+        padding: 20px 12px;
+    }
+
+
+    .sidebar-bottom {
+        padding: 12px;
+    }
+}
+
+
+/* =========================================================
    LOGIN PAGE
-========================================= */
+========================================================= */
 
 .login-page {
     min-height: 100vh;
@@ -528,12 +876,11 @@ a {
     padding: 30px;
 }
 
-
 .login-container {
     width: 100%;
+
     max-width: 440px;
 }
-
 
 .login-card {
     background: var(--white);
@@ -548,9 +895,6 @@ a {
         0 20px 60px rgba(25, 20, 45, 0.08);
 }
 
-
-/* Brand */
-
 .login-brand {
     display: flex;
 
@@ -561,7 +905,6 @@ a {
     margin-bottom: 35px;
 }
 
-
 .login-brand .brand-logo {
     width: 45px;
     height: 45px;
@@ -569,16 +912,15 @@ a {
     flex-shrink: 0;
 }
 
-
 .login-brand h2 {
     margin: 0;
 
     color: var(--text);
 
     font-size: 18px;
+
     font-weight: 700;
 }
-
 
 .login-brand p {
     margin: 2px 0 0;
@@ -588,13 +930,9 @@ a {
     font-size: 10px;
 }
 
-
-/* Header */
-
 .login-header {
     margin-bottom: 25px;
 }
-
 
 .login-header h1 {
     margin: 0 0 7px;
@@ -602,9 +940,9 @@ a {
     color: var(--text);
 
     font-size: 25px;
+
     font-weight: 700;
 }
-
 
 .login-header p {
     margin: 0;
@@ -614,18 +952,15 @@ a {
     font-size: 12px;
 }
 
-
-/* Form */
-
 .login-card .form-label {
     color: #565360;
 
     font-size: 11px;
+
     font-weight: 600;
 
     margin-bottom: 7px;
 }
-
 
 .login-card .input-group-text {
     background: #faf9fc;
@@ -635,7 +970,6 @@ a {
     color: #9995a3;
 }
 
-
 .login-card .form-control {
     height: 44px;
 
@@ -644,11 +978,9 @@ a {
     font-size: 12px;
 }
 
-
 .login-card .form-control::placeholder {
     color: #aaa7b2;
 }
-
 
 .login-card .form-control:focus {
     border-color: #c9c0ef;
@@ -656,7 +988,6 @@ a {
     box-shadow:
         0 0 0 3px rgba(91, 60, 196, 0.07);
 }
-
 
 .password-toggle {
     border: 1px solid var(--border);
@@ -666,13 +997,11 @@ a {
     color: #9995a3;
 }
 
-
 .password-toggle:hover {
     color: var(--primary);
 
     background: #faf9fc;
 }
-
 
 .login-button {
     width: 100%;
@@ -686,16 +1015,15 @@ a {
     border-color: var(--primary);
 
     font-size: 12px;
+
     font-weight: 600;
 }
-
 
 .login-button:hover {
     background: var(--primary-dark);
 
     border-color: var(--primary-dark);
 }
-
 
 .login-footer {
     text-align: center;
@@ -711,7 +1039,6 @@ a {
     font-size: 9px;
 }
 
-
 @media (max-width: 500px) {
 
     .login-page {
@@ -721,98 +1048,4 @@ a {
     .login-card {
         padding: 28px 22px;
     }
-
-}
-
-
-/* Users page */
-
-.user-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f3f5;
-    font-weight: 600;
-}
-
-.user-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-info strong {
-    font-size: 14px;
-}
-
-.user-info small {
-    color: #6c757d;
-    font-size: 12px;
-}
-
-.stat-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f3f5;
-    font-size: 20px;
-}
-
-.table th {
-    white-space: nowrap;
-}
-
-.table td {
-    vertical-align: middle;
-}
-
-.user-table-avatar {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    background: #f1f3f5;
-}
-
-@media (max-width: 991px) {
-
-    .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar.show {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        margin-left: 0;
-    }
-
-}
-
-@media (max-width: 576px) {
-
-    .user-info {
-        display: none;
-    }
-
-    .content-area {
-        padding: 15px;
-    }
-
 }

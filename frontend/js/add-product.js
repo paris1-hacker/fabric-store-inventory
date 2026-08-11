@@ -6,7 +6,18 @@ const categorySelect = document.getElementById("categoryId");
 const supplierSelect = document.getElementById("supplierId");
 const messageBox = document.getElementById("formMessage");
 const saveButton = document.getElementById("saveProductButton");
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
 
+if (menuToggle && sidebar) {
+
+    menuToggle.addEventListener("click", () => {
+
+        sidebar.classList.toggle("show");
+
+    });
+
+}
 loadCategories();
 loadSuppliers();
 

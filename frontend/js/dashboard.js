@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    loadDashboard();
 
     requireAuthentication();
 
@@ -55,7 +54,6 @@ async function loadSummary() {
             response
         );
 
-
         if (!response.success) {
 
             throw new Error(
@@ -65,39 +63,20 @@ async function loadSummary() {
 
         }
 
-
         const data =
             response.data;
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | UPDATE SUMMARY CARDS
-        |--------------------------------------------------------------------------
-        */
-
         const totalProducts =
-            document.getElementById(
-                "totalProducts"
-            );
-
+            document.getElementById("totalProducts");
 
         const totalStock =
-            document.getElementById(
-                "totalStock"
-            );
-
+            document.getElementById("totalStock");
 
         const lowStockProducts =
-            document.getElementById(
-                "lowStockProducts"
-            );
-
+            document.getElementById("lowStock");
 
         const outOfStockProducts =
-            document.getElementById(
-                "outOfStockProducts"
-            );
+            document.getElementById("outOfStock");
 
 
         if (totalProducts) {
@@ -144,7 +123,6 @@ async function loadSummary() {
                 ).toLocaleString();
 
         }
-
 
     } catch (error) {
 
